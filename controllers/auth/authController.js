@@ -1,4 +1,4 @@
-const jwtAuth = require('../middleware/authjwt.js')
+const jwtAuth = require('../../middleware/authjwt')
 
 
 function me(req, res, next) {

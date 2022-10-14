@@ -1,10 +1,8 @@
 const express = require('express')
 const router = express.Router();
 require("dotenv").config();
-const jwt = require('../middleware/jwt.js')
-const [me,signIn, signOut] = require('../controllers/authController')
-
-
+const jwt = require('../../middleware/jwt.js')
+const [me,signIn, signOut] = require('../../controllers/auth/authController')
 
 //GET
 router.get("/me", jwt, me );
