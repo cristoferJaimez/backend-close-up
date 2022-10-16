@@ -11,9 +11,9 @@ const conx = mysql.createConnection({
     user: process.env.USER,
   });
   
-  conx.connect((err) => {
+  conx.connect((err, data) => {
     if (err) throw err;
-    console.log("Connected to database.");
+    console.log("Connected to database:" , process.env.DATABASE);
   });
 
 
