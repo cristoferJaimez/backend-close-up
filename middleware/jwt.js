@@ -7,7 +7,9 @@ function validateJWT(req, res, next) {
 
   const data = jwt.verify(accessToken, process.env.JWT, (err, data) => {
     if (err) {
+      res.redirect('/')
       res.status(400).send("Access denied, token expired or incorrect");
+      
     } else {
       next();
     }
