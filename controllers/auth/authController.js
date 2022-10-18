@@ -22,10 +22,10 @@ async function signIn(req, res, next) {
             const token = jwt.sign(data, process.env.JWT)  
             res.json({token})
         } else {
-          res.status(200).json("Access denied, invalid user...");
+        return  res.send([{ms: 'msm'}])         
         }
       } else {
-        res.status(404).json(err);
+        res.status(400).json({token});
       }
     }
   );
