@@ -1,6 +1,7 @@
 const conx = require("../../database/conx");
 require("dotenv").config();
 const jwt = require('jsonwebtoken');
+const createjwt = require('../../middleware/authjwt');
 
 function me(req, res, next) {
   conx.query("CALL signIn(?, ?)",['cristo@test.com', '12345'], (err, rows, filds) =>{
@@ -19,8 +20,10 @@ async function signIn(req, res, next) {
       if (!err) {
         if (rows[0].length > 0) {
             let  data = JSON.stringify(rows[0]);
-            const token = jwt.sign(data, process.env.JWT)  
-            res.json({token})
+
+            const token =  createjwt(data); 
+            console.log(token);
+            res.json({token}) 
         } else {
         return  res.send([{ms: 'msm'}])         
         }
@@ -28,7 +31,7 @@ async function signIn(req, res, next) {
         res.status(400).json({token});
       }
     }
-  );
+  ); 
 }
 //end route sign In
 
