@@ -1,7 +1,13 @@
 const express = require('express')
 const app = express();
 const cors =  require('cors')
+
+
+//routes
 const router = require('./routers/auth/auth')
+const router_tv = require('./routers/transferencias_valor/tv')
+
+
 
 const bodyParser = require('body-parser')
 const expressFile = require('express-fileupload')
@@ -14,7 +20,7 @@ const key = require('./config/key')
 app.set('port', process.env.PORT || 3000)
 
 //middlewares
-
+ 
 app.use(cors())
 app.use(expressFile())
 app.use((req,res,next) =>{
@@ -28,8 +34,10 @@ app.use(bodyParser.urlencoded({extended: false}))
 app.set('key', key.key);
 app.use(express.json())
 app.use(express.urlencoded({extended: false}))
+
 //routes
 app.use(router);
+app.use(router_tv);
 
 
 //listen server
