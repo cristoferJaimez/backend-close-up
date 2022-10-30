@@ -5,7 +5,7 @@ const cors =  require('cors')
 
 //routes
 const router = require('./routers/auth/auth')
-const router_tv = require('./routers/transferencias_valor/tv')
+const router_tv = require('./routers/dashBoard/transferencias_valor/tv')
 
 
 

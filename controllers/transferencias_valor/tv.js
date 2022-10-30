@@ -15,21 +15,23 @@ AWS.config.update({
 
 function all(req,res,next){
   const client = new AWS.DynamoDB.DocumentClient();
-  const TABLET_NAME =  'transferencias_valor'
 
   const getCharacters = async () =>{
-          const params = {
-              TableName : TABLET_NAME,
-              KeyConditionExpression : 'codigo_cum = :codigo_cum  AND id = 1',
-              //ProjectionExpression : 'tipo_identificacion_reportador, codigo_cum ',
-              ExpressionAttributeValues : {
-                  ':codigo_cum' : {"S" : "12345"}
-              },
-              Limit : 2,
-              ScanIndexForward : false
-          };
+
+
+      const params = {
+          "TableName": "transferencias_valor",
+          "ScanIndexForward": true,
+          "FilterExpression": "#DYNOBASE_mes_corte = :mes_corte",
+          "ExpressionAttributeNames": {
+            "#DYNOBASE_mes_corte": "mes_corte"
+          },
+          "ExpressionAttributeValues": {
+            ":mes_corte": "agosto"
+          }
+        };
               
-          const charactes =  await client.query(params).promise()
+          const charactes =  await client.scan(params).promise()
           console.log(charactes);
           res.send(charactes)
           return charactes;
