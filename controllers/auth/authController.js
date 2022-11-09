@@ -4,7 +4,8 @@ const jwt = require('jsonwebtoken');
 const createjwt = require('../../middleware/authjwt');
 
 function me(req, res, next) {
-  conx.query("CALL signIn(?, ?)",['cristo@test.com', '12345'], (err, rows, filds) =>{
+  console.log(req);
+  conx.query("CALL signIn(?, ?)",['', ''], (err, rows, filds) =>{
     if(err) throw err;  
     res.json(rows)
   } )

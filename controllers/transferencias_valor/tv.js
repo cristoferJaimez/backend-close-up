@@ -18,7 +18,7 @@ function all(req,res,next){
 
   const getCharacters = async () =>{
 
-
+/*
       const params = {
           "TableName": "transferencias_valor",
           "ScanIndexForward": true,
@@ -31,7 +31,15 @@ function all(req,res,next){
           }
         };
               
-          const charactes =  await client.scan(params).promise()
+  */
+          var  params ={
+            "TableName": "transferencias_valor",
+            "Item": {
+              'nombre_entidad_que_reporta' : {N: 'laboratorios lafrancol s.'},
+              'mes_transferencia' : {S: 'septiembre'}
+            }
+          }
+         const charactes =  await client.scan(params).promise()
           console.log(charactes);
           res.send(charactes)
           return charactes;
