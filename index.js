@@ -7,6 +7,7 @@ const cors =  require('cors')
 const router = require('./routers/auth/auth')
 const router_tv = require('./routers/dashBoard/transferencias_valor/tv')
 const router_maps = require('./routers/maps/index')
+const router_ad = require('./routers/analitydata/index')
 
 
 
@@ -39,8 +40,8 @@ app.use(express.urlencoded({extended: false}))
 //routes
 app.use(router);
 app.use(router_tv);
-app.use(router_maps)
-
+app.use(router_maps);
+app.use(router_ad);
 
 //listen server
 app.listen( app.get('port'), () => {

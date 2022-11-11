@@ -9,7 +9,7 @@ function me(req, res, next) {
     if(err) throw err;  
     res.json(rows)
   } )
-}
+} 
 
 
 // sign In users validation, inyect query, jwt...
@@ -21,19 +21,35 @@ async function signIn(req, res, next) {
       if (!err) {
         if (rows[0].length > 0) {
             let  data = JSON.stringify(rows[0]);
-
             const token =  createjwt(data); 
-            console.log(token);
-            res.json({token}) 
+            const user = JSON.parse(data)
+            //console.log(user);
+        
+            let info = {
+                email : user[0]['email'],
+                rol : user[0]['rol'],
+                lat : user[0]['coord_lat'],
+                lng : user[0]['coord_lng'],
+                farmacia : user[0]['farmacia'],
+                img : user[0]['img'],
+                foto : user[0]['photo'],
+                utc : user[0]['utc'],
+                direccion : user[0]['direccion'],
+              }
+       
+         
+              //console.log(info);
+
+            res.status(200).json({token:token, info:info}) 
         } else {
-        return  res.send([{ms: 'msm'}])         
+        return  res.send([{ms: 'msm fail auth...'}])         
         }
       } else {
         res.status(400).json({token});
       }
     }
   ); 
-}
+}  
 //end route sign In
 
 
