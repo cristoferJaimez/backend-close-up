@@ -14,7 +14,9 @@ const router_ad = require('./routers/analitydata/index')
 const bodyParser = require('body-parser')
 const expressFile = require('express-fileupload')
 
+//conx
 const con = require('./database/conx.js')
+
 
 const key = require('./config/key')
 
@@ -22,7 +24,7 @@ const key = require('./config/key')
 app.set('port', process.env.PORT || 3000)
 
 //middlewares
- 
+
 app.use(cors())
 app.use(expressFile())
 app.use((req,res,next) =>{

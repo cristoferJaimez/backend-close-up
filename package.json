@@ -21,7 +21,10 @@
     "jsonwebtoken": "^8.5.1",
     "mysql": "^2.18.1",
     "node-fetch": "^2.6.7",
-    "node-localstorage": "^2.2.1"
+    "node-localstorage": "^2.2.1",
+    "node-redshift": "^0.1.5",
+    "pg": "^8.8.0",
+    "pg-pool": "^3.5.2"
   },
   "devDependencies": {
     "nodemon": "^2.0.20"
