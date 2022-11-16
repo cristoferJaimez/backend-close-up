@@ -16,6 +16,7 @@ pool.connect().then(client => {
     .then(res => {
         client.release()
         console.log(res);
+        
     })
     .catch(err => console.log(err))
 
