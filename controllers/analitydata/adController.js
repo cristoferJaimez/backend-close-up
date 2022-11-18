@@ -1,18 +1,24 @@
 require("dotenv").config();
-var Redshift = require('node-redshift')
+const pool = require('../../database/redshift')
 
-var client = {
-  "user": 'awscloseup',
-  "database": 'proveedores',
-  "password": 'Devcloseup2022_',
-  "port": '5439',
-  "host": 'redshift-cluster-2.cfvvscfzw2rb.us-east-1.redshift.amazonaws.com',
-};
+
+
 
 function data(req, res, next) {
-  var re = Redshift(client)
+
+  
+  pool.connect().then(client => {
+    client.query(`SELECT  cast(cod_ano_mes as varchar), sum(cast(valores as real)) as valores, sum(cast(unidades as real)) as unidades, cast(count(*) as integer) as numero FROM tbl_proveedores_xl where grupo_proveedor = ${req.params.id} group by cod_ano_mes order by cod_ano_mes asc; `)
+      .then(resp => {
+        client.release()
+        console.log(resp);
+        res.send(resp)
 
 
+      })
+      .catch(err => console.log(err))
+
+  }).catch(err => console.log(err))
 
 }
 

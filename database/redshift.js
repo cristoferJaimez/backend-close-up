@@ -1,4 +1,3 @@
-var Redshift = require('node-redshift')
 var Pool = require('pg-pool')
 
 var client = {
@@ -11,13 +10,8 @@ var client = {
 
 
 const pool = new Pool(client)
-pool.connect().then(client => {
-    client.query('select * from tbl_proveedores_sm where  cod_farmacia = 22676 ')
-    .then(res => {
-        client.release()
-        console.log(res);
-        
-    })
-    .catch(err => console.log(err))
+/*
 
-}).catch( err => console.log(err))
+*/
+
+module.exports = pool;

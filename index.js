@@ -8,6 +8,7 @@ const router = require('./routers/auth/auth')
 const router_tv = require('./routers/dashBoard/transferencias_valor/tv')
 const router_maps = require('./routers/maps/index')
 const router_ad = require('./routers/analitydata/index')
+const router_map_ad = require('./routers/maps/chart/index')
 
 
 
@@ -44,6 +45,7 @@ app.use(router);
 app.use(router_tv);
 app.use(router_maps);
 app.use(router_ad);
+app.use(router_map_ad)
 
 //listen server
 app.listen( app.get('port'), () => {

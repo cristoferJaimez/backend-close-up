@@ -1,6 +1,6 @@
-const express = require('express')
 require("dotenv").config();
 const mysql = require("mysql");
+
 //CONX DB MYSQL
 //conexion a base de datos Mysql
 const conx = mysql.createConnection({
