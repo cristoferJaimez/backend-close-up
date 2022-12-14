@@ -91,6 +91,8 @@ async function chartMAT(req, res, next) {
 
    }).catch(err => console.log(err))
 }
+
+
 //calculo total del mercado valores y unidades 3 años
 async function total(req, res, next) {
    pool.connect().then(client => {
